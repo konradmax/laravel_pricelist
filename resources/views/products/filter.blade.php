@@ -9,21 +9,21 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="py-2">
-                        <form action="{{ route('products.filter') }}" method="POST">
-                            @csrf
-                            @method('POST')
-                            <select name="filter[category_id]">
-                                <option value="0">None</option>
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
+                   <div class="py-2">
+                       <form action="{{ route('products.filter') }}" method="POST">
+                           @csrf
+                           @method('POST')
+                           <select name="filter[category_id]">
+                               <option value="0">None</option>
+                               @foreach($categories as $category)
+                                   <option value="{{ $category->id }}">{{ $category->name }}</option>
+                               @endforeach
+                           </select>
 
-                            <x-button>Filter</x-button>
-                            <a class="px-1" href="{{ route('products.index') }}">Reset</a>
-                        </form>
-                    </div>
+                           <x-button>Filter</x-button>
+                           <a class="px-1" href="{{ route('products.index') }}">Reset</a>
+                       </form>
+                   </div>
                     <table class="w-full">
 
                         <td class="border" style="text-align: center"><b>ID</b></td>

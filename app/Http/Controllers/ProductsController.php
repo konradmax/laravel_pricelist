@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\Price;
 use Illuminate\Http\Request;
 
@@ -14,15 +15,16 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-
     {
-        $products = Product::latest()->paginate(5);
-
         $data = Product::join('prices', 'products.sku', '=', 'prices.sku')
             ->paginate(5, ['products.name', 'prices.price', 'products.id', 'products.desc', 'products.sku']);
 
-        return view('products.index', compact('products','data'));
+        $categories = Category::all();
+
+        return view('products.index', compact('data', 'categories'));
     }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -30,7 +32,9 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $categories = Category::all();
+
+        return view('products.create',compact( 'categories'));
     }
 
     /**
@@ -43,11 +47,11 @@ class ProductsController extends Controller
     {
         $request->validate([
            'name' => 'required',
-           'sku' => 'required',
+           'sku' => 'required|unique:products,sku',
            'price' => 'required',
         ]);
 
-        Product::create($request->only(['name', 'sku', 'desc']));
+        Product::create($request->only(['name', 'sku', 'desc','category_id']));
         Price::create($request->only(['sku', 'price']));
 
         return redirect()->route('products.index')
@@ -66,14 +70,6 @@ class ProductsController extends Controller
         $data = Price::where('sku', $product->sku)->get();
         $description = Product::where('sku', $product->sku)->get('desc');
         return view('products.show', compact('product','data', 'description'));
-
-    }
-
-    public function filter(Product $product, Price $price, Request $request)
-    {
-        $data = Product::where('name', $request->name);
-
-        return view('products.index', compact('products','data'));
 
     }
 
@@ -119,4 +115,16 @@ class ProductsController extends Controller
         return redirect()->route('products.index')
             ->with('success','Product Deleted');
     }
+
+    public function filter(Request $request)
+    {
+
+        $categoryId = $request->filter;
+        $categories = Category::all();
+        $data = Product::where('category_id', $categoryId)->join('prices', 'products.sku', '=', 'prices.sku')->paginate(5, ['products.name', 'prices.price', 'products.id', 'products.desc', 'products.sku']);
+
+        return view('products.filter', compact('data', 'categories'));
+    }
 }
+
+

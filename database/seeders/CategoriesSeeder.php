@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Price;
+use App\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PriceSeeder extends Seeder
+class CategoriesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +15,9 @@ class PriceSeeder extends Seeder
      */
     public function run()
     {
-        Price::create([
-            'sku' => 'product-001',
-            'price' => '19.99',
+        Category::create([
+            'category_id' => 'category-002',
+            'name' => 'Category #2',
         ]);
     }
 }
