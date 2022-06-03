@@ -16,8 +16,8 @@ class CategoriesSeeder extends Seeder
     public function run()
     {
         Category::create([
-            'category_id' => 'category-002',
-            'name' => 'Category #2',
+            'category_id' => 'category-001',
+            'name' => 'Category #1',
         ]);
     }
 }

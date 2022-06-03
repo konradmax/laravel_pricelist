@@ -60,6 +60,19 @@ class ProductsController extends Controller
             ->with('success', 'product created successfully');
     }
 
+    public function storeprice(Request $request)
+    {
+        $request->validate([
+            'sku' => 'required',
+            'price' => 'required',
+        ]);
+
+        Price::create($request->only(['sku', 'price']));
+
+        return redirect()->route('products.index')
+            ->with('success', 'price created successfully');
+    }
+
 
     /**
      * Display the specified resource.
@@ -71,6 +84,7 @@ class ProductsController extends Controller
     {
         $data = Price::where('sku', $product->sku)->get();
         $description = Product::where('sku', $product->sku)->get('desc');
+
         return view('products.show', compact('product','data', 'description'));
 
     }
@@ -83,7 +97,10 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        $data = Price::where('sku', $product->sku)->get();
+        $description = Product::where('sku', $product->sku)->get('desc');
+
+        return view('products.edit', compact('product', 'data', 'description'));
     }
 
     /**
@@ -93,12 +110,13 @@ class ProductsController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $product, Price $price)
     {
         $request->validate([
 
         ]);
-        $product->update($request->all());
+        $product->update($request->only('name'));
+        $price->where('sku', $product->sku)->update($request->only('price'));
 
         return redirect()->route('products.index')
             ->with('success','Product updated');

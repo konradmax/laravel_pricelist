@@ -26,6 +26,7 @@ Route::get('/dashboard', function () {
 Route::resource('products','App\Http\Controllers\ProductsController');
 Route::get('products/create',['App\Http\Controllers\ProductsController','create'])->name('products.create');
 Route::post('products/create',['App\Http\Controllers\ProductsController','store'])->name('products.store');
+Route::post('products/edit',['App\Http\Controllers\ProductsController','storeprice'])->name('products.storeprice');
 Route::post('products',['App\Http\Controllers\ProductsController','filter'])->name('products.filter');
 
 
