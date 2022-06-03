@@ -24,11 +24,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('products','App\Http\Controllers\ProductsController');
+Route::get('products',['App\Http\Controllers\ProductsController','index'])->name('products.index');
 Route::get('products/create',['App\Http\Controllers\ProductsController','create'])->name('products.create');
 Route::get('pricelist',['App\Http\Controllers\ProductsController','pricelist'])->name('products.pricelist');
 Route::post('products/create',['App\Http\Controllers\ProductsController','store'])->name('products.store');
 Route::post('products/pricelist',['App\Http\Controllers\ProductsController','storeprice'])->name('products.storeprice');
 Route::post('products',['App\Http\Controllers\ProductsController','filter'])->name('products.filter');
-
+Route::delete('pricelist/{id}',['App\Http\Controllers\ProductsController','destroyprice'])->name('products.destroyprice');
 
 require __DIR__.'/auth.php';

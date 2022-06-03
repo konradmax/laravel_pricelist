@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
         Product::create([
             'sku' => 'product-001',
             'name' => 'New Product 2',
-            'category_id' => 1,
+            'category_id' => 'category-001',
             'desc' => 'test',
         ]);
     }

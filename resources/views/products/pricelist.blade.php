@@ -33,8 +33,7 @@
                                 <td class="border" style="text-align: center">{{$price->sku}}</td>
                                 <td class="border p-2">{{$price->price}}</td>
                                 <td>
-                                    <form action="{{ route('products.destroy', $price->id) }}" method="POST">
-                                        @csrf
+                                    <form action="{{ route('products.destroyprice', $price->id) }}" method="POST">                                        @csrf
                                         @method('DELETE')
                                         <x-button style="float: right">Delete</x-button>
                                     </form>
