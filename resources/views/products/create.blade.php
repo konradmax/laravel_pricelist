@@ -17,7 +17,6 @@
                     <input type="text" name="sku" class="form-control" placeholder="sku">
                     <input type="text" name="desc" class="form-control" placeholder="description">
                    <select name="category_id">
-                       <option value="0">None</option>
                    @foreach($categories as $category)
                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                    @endforeach

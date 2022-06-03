@@ -17,7 +17,9 @@ class ProductsController extends Controller
     public function index()
     {
         $data = Product::join('prices', 'products.sku', '=', 'prices.sku')
-            ->paginate(5, ['products.name', 'prices.price', 'products.id', 'products.desc', 'products.sku']);
+            ->join('categories', 'products.category_id', '=', 'categories.category_id')
+            ->paginate(5, ['products.name', 'prices.price', 'products.id', 'products.desc', 'products.sku', 'categories.name AS category_name', 'categories.category_id AS category_id']);
+
 
         $categories = Category::all();
 
@@ -118,10 +120,21 @@ class ProductsController extends Controller
 
     public function filter(Request $request)
     {
+        $categoryId = $request->filter['category_id'];
+        if($categoryId === 'all') {
+            $data = Product::join('prices', 'products.sku', '=', 'prices.sku')
+                ->join('categories', 'products.category_id', '=', 'categories.category_id')
+                ->paginate(5, ['products.name', 'prices.price', 'products.id', 'products.desc', 'products.sku', 'categories.name AS category_name', 'categories.category_id AS category_id']);
 
-        $categoryId = $request->filter;
+        } else {
+            // category is selected
+            $data = Product::where('products.category_id', $categoryId)
+                ->join('prices', 'products.sku', '=', 'prices.sku')
+                ->join('categories', 'products.category_id', '=', 'categories.category_id')
+                ->paginate(5, ['products.name', 'prices.price', 'products.id', 'products.desc', 'products.sku', 'categories.name AS category_name', 'categories.category_id AS category_id']);
+
+        }
         $categories = Category::all();
-        $data = Product::where('category_id', $categoryId)->join('prices', 'products.sku', '=', 'prices.sku')->paginate(5, ['products.name', 'prices.price', 'products.id', 'products.desc', 'products.sku']);
 
         return view('products.filter', compact('data', 'categories'));
     }

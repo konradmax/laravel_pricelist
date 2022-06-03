@@ -14,14 +14,13 @@
                            @csrf
                            @method('POST')
                            <select name="filter[category_id]">
-                               <option value="0">None</option>
+                               <option value="all">All</option>
                                @foreach($categories as $category)
                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                                @endforeach
                            </select>
 
                            <x-button>Filter</x-button>
-                           <a class="px-1" href="{{ route('products.index') }}">Reset</a>
                        </form>
                    </div>
                     <table class="w-full">
@@ -37,6 +36,8 @@
                                 <td class="border" style="text-align: center">{{$product->sku}}</td>
                                 <td class="border p-2">{{$product->name}}</td>
                                 <td class="border p-2">{{$product->price}}</td>
+                                <td class="border p-2">{{$product->category_name}}</td>
+
                                 <td>
                                     <form action="{{ route('products.destroy', $product->id) }}" method="POST">
                                         <a class="px-1" style="line-height: 2" href="{{ route('products.show', $product->id) }}">Show</a>/

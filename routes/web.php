@@ -24,6 +24,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('products','App\Http\Controllers\ProductsController');
+Route::get('products/create',['App\Http\Controllers\ProductsController','create'])->name('products.create');
+Route::post('products/create',['App\Http\Controllers\ProductsController','store'])->name('products.store');
+Route::post('products',['App\Http\Controllers\ProductsController','filter'])->name('products.filter');
 
 
 require __DIR__.'/auth.php';
