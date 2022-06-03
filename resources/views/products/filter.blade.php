@@ -41,12 +41,13 @@
 
                                 <td>
                                     <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                        <a class="px-1" style="line-height: 2" href="{{ route('products.show', $product->id) }}">Show</a>/
-                                        <a class="px-1" href="{{ route('products.edit', $product->id) }}">Edit</a>
                                         @csrf
                                         @method('DELETE')
                                         <x-button style="float: right">Delete</x-button>
                                     </form>
+                                        <a class="px-1" style="line-height: 2" href="{{ route('products.show', $product->id) }}">Show</a>/
+                                        <a class="px-1" href="{{ route('products.edit', $product->id) }}">Edit</a>
+
                                 </td>
                             </tr>
                         @endforeach

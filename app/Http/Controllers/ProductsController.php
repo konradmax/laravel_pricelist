@@ -73,6 +73,15 @@ class ProductsController extends Controller
             ->with('success', 'price created successfully');
     }
 
+    public function pricelist()
+    {
+
+        $data = Price::all();
+
+        return view('products.pricelist', compact('data'));
+
+    }
+
 
     /**
      * Display the specified resource.
@@ -128,9 +137,10 @@ class ProductsController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product, Price $price)
     {
         $product->delete();
+        $price->delete();
 
         return redirect()->route('products.index')
             ->with('success','Product Deleted');
