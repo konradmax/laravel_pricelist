@@ -13,7 +13,12 @@
                         @csrf
                         @method('POST')
                         <input type="text" name="price" class="form-control" placeholder="price">
-                        <input type="text" name="sku" class="form-control" placeholder="SKU">
+                        <select name="sku" class="form-control" >
+                            <option hidden value="">Select Product</option>
+                            @foreach($products as $product)
+                                <option value="{{ $product->sku }}">{{ $product->name }}</option>
+                            @endforeach
+                        </select>
                         <x-button>create</x-button>
                     </form>
                 </div>

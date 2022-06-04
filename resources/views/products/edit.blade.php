@@ -15,8 +15,8 @@
 
                         <input type="text" name="name" class="form-control" value="{{$product->name}}" placeholder="name">
 
-                        @foreach($data as $products)
-                        <input type="text" name="price" class="form-control" value="{{$products->price}}" placeholder="price">
+                        @foreach($data as $prices)
+                        <input type="text" name="{{$prices->id}}" class="form-control" value="{{$prices->price}}" placeholder="price">
                         @endforeach
                         <x-button>submit</x-button>
 

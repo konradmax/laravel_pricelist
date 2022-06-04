@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Price;
 use Illuminate\Http\Request;
 
+
 class ProductsController extends Controller
 {
     /**
@@ -24,6 +25,18 @@ class ProductsController extends Controller
         $categories = Category::all();
 
         return view('products.index', compact('data', 'categories'));
+    }
+
+    public function welcome()
+    {
+        $data = Product::join('prices', 'products.sku', '=', 'prices.sku')
+            ->join('categories', 'products.category_id', '=', 'categories.category_id')
+            ->paginate(5, ['products.name', 'prices.price', 'products.id', 'products.desc', 'products.sku', 'categories.name AS category_name', 'categories.category_id AS category_id']);
+
+
+        $categories = Category::all();
+
+        return view('welcome', compact('data', 'categories'));
     }
 
 
@@ -120,11 +133,19 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Product $product, Price $price)
     {
+
+        dd($request);
         $request->validate([
 
         ]);
+
+        $data = Price::where('sku', $product->sku)->get();
         $product->update($request->only('name'));
-        $price->where('sku', $product->sku)->update($request->only('price'));
+
+        foreach($data as $prices)
+        {
+            $price->where('id', $prices->id)->update($request->only('price', 'id'));
+        }
 
         return redirect()->route('products.index')
             ->with('success','Product updated');
