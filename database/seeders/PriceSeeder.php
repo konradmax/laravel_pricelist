@@ -19,5 +19,17 @@ class PriceSeeder extends Seeder
             'sku' => 'product-001',
             'price' => '19.99',
         ]);
+        Price::create([
+            'sku' => 'product-002',
+            'price' => '29.99',
+        ]);
+        Price::create([
+            'sku' => 'product-003',
+            'price' => '49.99',
+        ]);
+        Price::create([
+            'sku' => 'product-001',
+            'price' => '59.99',
+        ]);
     }
 }

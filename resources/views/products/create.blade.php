@@ -18,8 +18,7 @@
                     <input type="text" name="desc" class="form-control" placeholder="description">
                    <select name="category_id">
                    @foreach($categories as $category)
-                       <option value="{{ $category->id }}">{{ $category->name }}</option>
-                   @endforeach
+                           <option value="{{ $category->category_id }}">{{ $category->name }}</option>                   @endforeach
                    </select>
                        <x-button>create</x-button>
                    </form>

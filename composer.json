@@ -46,7 +46,11 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "db_init": "touch database/database.sqlite",
+        "migrate": "php artisan migrate --database=sqlite_migration",
+        "seed": "php artisan db:seed ProductSeeder --database=sqlite_migration && php artisan db:seed PriceSeeder --database=sqlite_migration && php artisan db:seed CategoriesSeeder --database=sqlite_migration",
+        "post-install-cmd": "composer run-script db_init && composer run-script migrate && composer run-script seed"
     },
     "extra": {
         "laravel": {

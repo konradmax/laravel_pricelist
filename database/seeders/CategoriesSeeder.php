@@ -19,5 +19,9 @@ class CategoriesSeeder extends Seeder
             'category_id' => 'category-001',
             'name' => 'Category #1',
         ]);
+        Category::create([
+            'category_id' => 'category-002',
+            'name' => 'Category #2',
+        ]);
     }
 }
