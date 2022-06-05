@@ -22,7 +22,7 @@
                         {{ __('Create Product') }}
                     </x-nav-link>
                     <x-nav-link :href="route('products.pricelist')" :active="request()->routeIs('products.pricelist')">
-                        {{ __('Pricelist') }}
+                        {{ __('Edit Pricelist') }}
                     </x-nav-link>
 
                 </div>

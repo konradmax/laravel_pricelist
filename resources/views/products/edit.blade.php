@@ -13,11 +13,11 @@
                         @csrf
                         @method('PUT')
 
+                        <div class="pt-2">Edit Name</div>
                         <input type="text" name="name" class="form-control" value="{{$product->name}}" placeholder="name">
+                        <div class="pt-2">Edit Description</div>
+                        <input type="text" name="desc" class="form-control" value="{{$product->desc}}" placeholder="description">
 
-                        @foreach($data as $prices)
-                        <input type="text" name="{{$prices->id}}" class="form-control" value="{{$prices->price}}" placeholder="price">
-                        @endforeach
                         <x-button>submit</x-button>
 
                     </form>

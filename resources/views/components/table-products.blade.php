@@ -5,10 +5,10 @@
         </div>
         <table class="w-full">
 
-            <td class="border" style="text-align: center"><b>ID</b></td>
-            <td class="border" style="text-align: center">
+            <td class="border" style="text-align: center">ID</td>
+            <td class="border p-2">
                 <span>SKU</span>
-                <span>
+                <span style="float: right">
                         <a href="/products?page=1&sort_by=sku&sort_dir=asc&filter[category_id]={{ $filterCategory }}">
                             <i class="fa fa-arrow-up px-1"></i>
                         </a>
@@ -18,8 +18,8 @@
                     </span>
             </td>
             <td class="border p-2">
-                <span>PRODUCT NAME</span>
-                <span>
+                <span>NAME</span>
+                <span style="float: right">
                         <a href="/products?page=1&sort_by=product_name&sort_dir=asc&filter[category_id]={{ $filterCategory }}">
                             <i class="fa fa-arrow-up px-1"></i>
                         </a>
@@ -30,7 +30,7 @@
             </td>
             <td class="border p-2">
                 <span>PRICE</span>
-                <span>
+                <span style="float: right">
                         <a href="/products?page=1&sort_by=price&sort_dir=asc&filter[category_id]={{ $filterCategory }}">
                             <i class="fa fa-arrow-up px-1"></i>
                         </a>
@@ -41,7 +41,7 @@
             </td>
             <td class="border p-2">
                 <span>CATEGORY</span>
-                <span>
+                <span style="float: right">
                         <a href="/products?page=1&sort_by=category_name&sort_dir=asc&filter[category_id]={{ $filterCategory }}">
                             <i class="fa fa-arrow-up px-1"></i>
                         </a>
@@ -51,10 +51,11 @@
                     </span>
             </td>
 
-            @foreach($data as $product)
+
+        @foreach($data as $product)
                 <tr>
                     <td class="border" style="text-align: center">{{$product->id}}</td>
-                    <td class="border" style="text-align: center">{{$product->sku}}</td>
+                    <td class="border p-2">{{$product->sku}}</td>
                     <td class="border p-2">{{$product->product_name}}</td>
                     <td class="border p-2">{{$product->price}}</td>
                     <td class="border p-2">{{$product->category_name}}</td>

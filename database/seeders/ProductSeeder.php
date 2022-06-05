@@ -17,7 +17,7 @@ class ProductSeeder extends Seeder
     {
         Product::create([
             'sku' => 'product-001',
-            'name' => 'New Product 1',
+            'name' => 'Product 1',
             'category_id' => 'category-001',
             'desc' => 'Lorem ipsum',
         ]);

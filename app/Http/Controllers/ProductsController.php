@@ -140,7 +140,7 @@ class ProductsController extends Controller
         $request->validate([
             'name' => 'required',
             'sku' => 'required|unique:products,sku',
-            'price' => 'required',
+            'price' => 'required|numeric',
         ]);
 
         Product::create($request->only(['name', 'sku', 'desc','category_id']));
@@ -154,7 +154,7 @@ class ProductsController extends Controller
     {
         $request->validate([
             'sku' => 'required',
-            'price' => 'required',
+            'price' => 'required|numeric',
         ]);
 
         Price::create($request->only(['sku', 'price']));
@@ -208,24 +208,17 @@ class ProductsController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product, Price $price)
+    public function update(Request $request, Product $product)
     {
-
-        dd($request);
         $request->validate([
 
         ]);
 
-        $data = Price::where('sku', $product->sku)->get();
-        $product->update($request->only('name'));
+        $product->update($request->only('name', 'desc'));
 
-        foreach($data as $prices)
-        {
-            $price->where('id', $prices->id)->update($request->only('price', 'id'));
-        }
 
         return redirect()->route('products.index')
-            ->with('success','Product updated');
+            ->with('success','product updated successfully');
     }
 
     /**
@@ -240,7 +233,7 @@ class ProductsController extends Controller
         $price->delete();
 
         return redirect()->route('products.index')
-            ->with('success','Product Deleted');
+            ->with('success','product deleted successfully');
     }
 
     public function destroyprice($priceId, Price $price)
@@ -248,7 +241,7 @@ class ProductsController extends Controller
         $price->destroy($priceId);
 
         return redirect()->route('products.pricelist')
-            ->with('success','Price Deleted');
+            ->with('success','price deleted successfully');
     }
 
 
