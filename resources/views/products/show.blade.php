@@ -12,7 +12,7 @@
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">Prices:</h2>
                     @foreach($data as $price)
                         <tr>
-                            <td class="border" style="text-align: center">{{$price->price}}</td></br>
+                            <td class="border" style="text-align: center">{{$price->price . ' PLN'}}</td></br>
                         </tr>
                     @endforeach
                 </div>

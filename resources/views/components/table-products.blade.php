@@ -57,7 +57,7 @@
                     <td class="border" style="text-align: center">{{$product->id}}</td>
                     <td class="border p-2">{{$product->sku}}</td>
                     <td class="border p-2">{{$product->product_name}}</td>
-                    <td class="border p-2">{{$product->price}}</td>
+                    <td class="border p-2">{{$product->price . ' PLN'}}</td>
                     <td class="border p-2">{{$product->category_name}}</td>
 
                     <td>

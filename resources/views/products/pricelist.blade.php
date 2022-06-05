@@ -54,7 +54,7 @@
                             <tr>
                                 <td class="border" style="text-align: center">{{$price->id}}</td>
                                 <td class="border p-2">{{$price->sku}}</td>
-                                <td class="border p-2">{{$price->price}}</td>
+                                <td class="border p-2">{{$price->price . ' PLN'}}</td>
                                 <td>
                                     <form action="{{ route('products.destroyprice', $price->id) }}" method="POST">                                        @csrf
                                         @method('DELETE')
