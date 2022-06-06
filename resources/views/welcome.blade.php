@@ -13,7 +13,7 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
                         <h2 class="font-semibold text-xl text-gray-800 leading-tight mb-4">
-                            Please <a class="underline" href="{{ route('login') }}">log in</a> to update, sort and filter the pricelist!
+                            Please <a class="underline" href="{{ route('login') }}">log in</a> or <a class="underline" href="{{ route('register') }}">register</a> to sort, filter and update the pricelist!
                         </h2>
                         <table class="w-full">
 
@@ -36,7 +36,6 @@
                             @endforeach
 
                         </table>
-
                     </div>
                 </div>
 

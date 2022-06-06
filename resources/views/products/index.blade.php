@@ -4,11 +4,13 @@
             {{ __('Products') }}
         </h2>
     </x-slot>
-        @if($message = Session::get('success'))
-            <div class="alert alert-success">
+    @if($message = Session::get('success'))
+        <div class="alert alert-success">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <p>{{ $message }}</p>
             </div>
-        @endif
+        </div>
+    @endif
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <x-table-products :filterCategory="$filterCategory" :data="$data" :categories="$categories" :sortBy="$sortBy" :sortDir="$sortDir" />

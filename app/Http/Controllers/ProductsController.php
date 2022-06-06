@@ -147,7 +147,7 @@ class ProductsController extends Controller
         Price::create($request->only(['sku', 'price']));
 
         return redirect()->route('products.index')
-            ->with('success', 'product created successfully');
+            ->with('success', 'Product created successfully.');
     }
 
     public function storeprice(Request $request)
@@ -166,7 +166,7 @@ class ProductsController extends Controller
     public function pricelist()
     {
         $products = Product::all();
-        $data = Price::all();
+        $data = Price::paginate(5);
 
         return view('products.pricelist', compact('data','products'));
     }
@@ -218,7 +218,7 @@ class ProductsController extends Controller
 
 
         return redirect()->route('products.index')
-            ->with('success','product updated successfully');
+            ->with('success','Product updated successfully.');
     }
 
     /**
@@ -233,7 +233,7 @@ class ProductsController extends Controller
         $price->delete();
 
         return redirect()->route('products.index')
-            ->with('success','product deleted successfully');
+            ->with('success','Product deleted successfully.');
     }
 
     public function destroyprice($priceId, Price $price)
@@ -241,7 +241,7 @@ class ProductsController extends Controller
         $price->destroy($priceId);
 
         return redirect()->route('products.pricelist')
-            ->with('success','price deleted successfully');
+            ->with('success','Price deleted successfully.');
     }
 
 

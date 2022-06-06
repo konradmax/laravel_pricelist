@@ -18,7 +18,7 @@
                         <div class="pt-2">Edit Description</div>
                         <input type="text" name="desc" class="form-control mb-2" value="{{$product->desc}}" placeholder="description">
 
-                        <x-button>submit</x-button>
+                        <x-button>update</x-button>
 
                     </form>
 

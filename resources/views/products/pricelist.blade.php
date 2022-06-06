@@ -6,17 +6,22 @@
     </x-slot>
     @if($message = Session::get('success'))
         <div class="alert alert-success">
-            <p>{{ $message }}</p>
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <p>{{ $message }}</p>
+            </div>
         </div>
     @endif
     @if ($errors->any())
         <div class="alert alert-danger">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
             <strong>Error!</strong> There were problems with your input.<br><br>
             <ul>
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
+            </div>
         </div>
     @endif
     <div class="py-12">
@@ -63,10 +68,11 @@
                                 </td>
                             </tr>
                         @endforeach
-
                     </table>
-
                 </div>
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                       {{ $data->links() }}
+                    </div>
             </div>
         </div>
     </div>
