@@ -3,7 +3,7 @@
     <header class="bg-white shadow">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <div class="shrink-0 flex items-center">
-                <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                <x-application-logo class="block h-10 w-auto fill-current text-gray-600" /><p class="ml-2">Laravel Pricelist</p>
             </div>
         </div>
     </header>
